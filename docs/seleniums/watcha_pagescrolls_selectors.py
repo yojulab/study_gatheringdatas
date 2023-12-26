@@ -13,7 +13,7 @@ browser = webdriver.Chrome(service=ChromeService(webdriver_manager_directory))
 capabilities = browser.capabilities
 
 # - 주소 입력(https://www.w3schools.com/)
-browser.get("https://www.w3schools.com/")
+browser.get("https://pedia.watcha.com/en-KR/contents/m5ZlbBL/comments")
 
 # - 가능 여부에 대한 OK 받음
 pass
@@ -23,8 +23,21 @@ html = browser.page_source
 
 # - 정보 획득
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+## 한 페이지씩 이동
+element_body = browser.find_element(by=By.CSS_SELECTOR, value="body")
 
-pass
+previous_scrollHeight = 0
+while True:
+    element_body.send_keys(Keys.END)
+
+    current_scrollHeight = browser.execute_script("return document.body.scrollHeight")
+    if previous_scrollHeight >= current_scrollHeight:
+        break
+    else :
+        previous_scrollHeight = current_scrollHeight
+    time.sleep(1)
+    pass
 # browser.save_screenshot('./formats.png')
 
 # 브라우저 종료

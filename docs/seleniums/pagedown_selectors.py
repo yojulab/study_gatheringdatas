@@ -23,7 +23,13 @@ html = browser.page_source
 
 # - 정보 획득
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+## 한 페이지씩 이동
+element_body = browser.find_element(by=By.CSS_SELECTOR, value="body")
+element_body.send_keys(Keys.PAGE_DOWN)
+element_body.send_keys(Keys.END)
 
+element_body.send_keys(Keys.PAGE_UP)
 pass
 # browser.save_screenshot('./formats.png')
 
