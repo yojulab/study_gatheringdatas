@@ -18,14 +18,14 @@ browser.get(url)
 
 # - 정보 획득
 from selenium.webdriver.common.by import By
-# 앱 제조회사 리스트 : div > a.Si6A0c.Gy4nib
-element_companies = browser.find_elements(by=By.CSS_SELECTOR, value="div > a > span.best")
+# 상품회사 리스트 : 
+# element_companies = browser.find_elements(by=By.CSS_SELECTOR, value="div > a > span.best")
 # for index in range(len(element_companies)) :
 for index in range(4) :
     element_companies = browser.find_elements(by=By.CSS_SELECTOR, value="div > a > span.best")
     element_companies[index].click()
     time.sleep(1)       # 화면 완성 term
-    # 앱 상세 제목 : div > h1
+    # 제품 상세 제목 : div > h1
     element_title = browser.find_element(by=By.CSS_SELECTOR, value="div > h1.title")
     print("App company Name : {}".format(element_title.text))
     
