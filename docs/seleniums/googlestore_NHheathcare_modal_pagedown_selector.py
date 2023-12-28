@@ -13,7 +13,7 @@ browser = webdriver.Chrome(service=ChromeService(webdriver_manager_directory))
 capabilities = browser.capabilities
 
 # - 주소 입력(https://www.w3schools.com/)
-url = 'https://play.google.com/store/apps/details?id=com.sec.android.app.shealth&hl=ko-KR'
+url = 'https://play.google.com/store/apps/details?id=com.nhlife.customer.healthcare&hl=ko-KR'
 browser.get(url)
 
 # - 정보 획득
@@ -33,6 +33,9 @@ element_scrollable_div = browser.find_element(by=By.CSS_SELECTOR, value=selector
 # scrollableDiv.scrollTo(0, scrollableDiv.scrollHeight);
 previous_scrollHeight = 0
 
+# pagedown 전 댓글 갯수 확인 : div.RHo1pe
+elements_comment = browser.find_elements(by=By.CSS_SELECTOR, value='div.RHo1pe')
+print('count comment before done scroll : {}'.format(len(elements_comment)))
 while True:
     browser.execute_script('arguments[0].scrollTo(arguments[1], arguments[0].scrollHeight);'
                            , element_scrollable_div, previous_scrollHeight)
@@ -43,8 +46,12 @@ while True:
         break
     else :
         previous_scrollHeight = current_scrollHeight
-    time.sleep(2)
+    time.sleep(1)
     pass
+
+# pagedown 전 댓글 갯수 확인 : div.RHo1pe
+elements_comment = browser.find_elements(by=By.CSS_SELECTOR, value='div.RHo1pe')
+print('count comment after done scroll : {}'.format(len(elements_comment)))
 
 pass
 
