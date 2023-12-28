@@ -23,11 +23,28 @@ selector_element = '#yDmH0d > c-wiz.SSPGKf.Czez9d > div > div > div.tU8Y5c > div
 browser.find_element(by=By.CSS_SELECTOR, value=selector_element).click()
 
 # modal 스크롤 영역 
-selector_element = '#yDmH0d > div.VfPpkd-Sx9Kwc.cC1eCc.UDxLd.PzCPDd.HQdjr.VfPpkd-Sx9Kwc-OWXEXe-FNFY6c > div.VfPpkd-wzTsW > div > div > div > div > div.fysCi > div > div:nth-child(2)'
+# document.querySelector('div.fysCi').style.overflow
+selector_element = 'div.fysCi'
 element_scrollable_div = browser.find_element(by=By.CSS_SELECTOR, value=selector_element)
 
-# JavaScript를 사용하여 해당 div 요소 내부를 맨 아래로 스크롤합니다.
-browser.execute_script('arguments[0].scrollTop = arguments[0].scrollHeight', element_scrollable_div)
+# 댓글 모두 표시까지 페이지를 다운합니다.
+# within javascript in browser
+# var scrollableDiv = document.querySelector('div.fysCi');
+# scrollableDiv.scrollTo(0, scrollableDiv.scrollHeight);
+previous_scrollHeight = 0
+
+while True:
+    browser.execute_script('arguments[0].scrollTo(arguments[1], arguments[0].scrollHeight);'
+                           , element_scrollable_div, previous_scrollHeight)
+
+    current_scrollHeight = browser.execute_script("return arguments[0].scrollHeight"
+                                                  , element_scrollable_div)
+    if previous_scrollHeight >= current_scrollHeight:
+        break
+    else :
+        previous_scrollHeight = current_scrollHeight
+    time.sleep(2)
+    pass
 
 pass
 
