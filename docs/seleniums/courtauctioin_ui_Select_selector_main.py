@@ -4,6 +4,7 @@ def main() :
     try:
         uri="https://www.courtauction.go.kr/"
         browser = subfunction.getBrowserFromURI(uri)    # 업무 코드
+        browser = subfunction.clickThingsCourt(browser)
         court_count = subfunction.selectCourts(browser=browser)
         print("court count : {}".format(court_count))
     except:

@@ -23,15 +23,19 @@ def getBrowserFromURI(uri="https://www.courtauction.go.kr/"):
     browser.get(uri)
     return browser
 
-def selectCourts(browser):
+from selenium.webdriver.common.by import By
+def clickThingsCourt(browser):
     # iframe 으로 전환
     browser.switch_to.frame('indexFrame')
 
-    from selenium.webdriver.common.by import By
     # click menu : #menu > h1:nth-child(5) > a > img
     browser.find_element(by=By.CSS_SELECTOR, value="#menu > h1:nth-child(5) > a > img").click()
 
-    from selenium.webdriver.support.ui import Select
+    return browser
+
+from selenium.webdriver.support.ui import Select
+def selectCourts(browser):
+
     # 법원/소재지 리스트 : #idJiwonNm > option
     element_courts = browser.find_elements(by=By.CSS_SELECTOR, value="#idJiwonNm > option")
     for index in range(len(element_courts)) :
