@@ -58,3 +58,7 @@ def quitBrowser(browser):
     # 브라우저 종료
     browser.quit()
     return 0
+
+if __name__ == "__main__":
+    # find_element().click()
+    getBrowserFromURI("https://www.w3schools.com/")
