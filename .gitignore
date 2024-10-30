@@ -1,2 +1,4 @@
 downloads/
 .vscode/settings.json
+codes/seleniums/temp*
+*.png
