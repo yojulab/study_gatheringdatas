@@ -17,6 +17,14 @@ def main():
     # - 주소 입력(https://www.w3schools.com/)
     browser.get("https://cafe.naver.com/sbabellows")
 
+    # div.board-list > div > a
+    browser.switch_to.frame("cafe_main")    
+    import time
+    time.sleep(2)
+    cafe_list = browser.find_elements(by=By.CSS_SELECTOR, value="div.board-list > div > a")
+    for index, row in enumerate(cafe_list):
+        print(f'title : {row.text}')
+        pass
     return 
 
 if __name__ == '__main__':
